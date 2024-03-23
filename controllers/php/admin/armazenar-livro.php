@@ -1,0 +1,46 @@
+<?php
+
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/admin-livros.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/livro.php";
+
+$titulo = $_POST['titulo_livro'];
+
+$autor = $_POST['autor_livro'];
+
+$dataPublicacao = $_POST['data_publicado'];
+
+$descricao = $_POST['descricao_livro'];
+
+if(isset($_POST['categoria_livro'])){
+    $categoria = intval($_POST['categoria_livro']);
+}else{
+    $categoria = null;
+}
+
+$caminhoImagensLivro = $_SERVER['DOCUMENT_ROOT'] . "/resources/imagens/livros/";
+
+$caminhoPdfsLivro = $_SERVER['DOCUMENT_ROOT'] . "/resources/livros-pdf/";
+
+$imgLivro = $_FILES['imagem_livro']['tmp_name'];
+
+$arquivoPdf = $_FILES['arquivo_pdf']['tmp_name'];
+
+$nomeImg = $_FILES['imagem_livro']['name'];
+
+$nomePdf = $_FILES['arquivo_pdf']['name'];
+
+$extensaoImg = pathinfo($nomeImg, PATHINFO_EXTENSION);
+
+move_uploaded_file($imgLivro, $caminhoImagensLivro . $titulo.".".$extensaoImg);
+
+move_uploaded_file($arquivoPdf , $caminhoPdfsLivro . $titulo.".".'pdf');
+
+$caminhoCompletoImg = '/resources/imagens/livros/'.$titulo.'.'.$extensaoImg;
+
+$caminhoCompletoPdf = '/resources/livros-pdf/'.$titulo.'.pdf';
+
+$livro = new Livro(null,$titulo,$dataPublicacao,$autor,$categoria, $caminhoCompletoPdf, $caminhoCompletoImg);
+
+$adminLivro = new AdminLivros();
+
+$adminLivro->adicionarLivro($livro);

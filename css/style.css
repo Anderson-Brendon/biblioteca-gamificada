@@ -1,0 +1,880 @@
+/*config geral*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: aliceblue;
+    
+}
+
+html {
+    height: 100%;
+
+    background-color: #2B2A4C;
+}
+
+a,
+a:visited {
+    color: azure;
+    text-decoration: none;
+    background-color: transparent;
+    text-align: center;
+}
+
+body {
+    height: 100%;
+    background-color: #2B2A4C;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+footer{
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+input,
+input::placeholder {
+    text-align: center;
+}
+
+span{
+    cursor: pointer;
+}
+
+input:not(#navBar div input) {
+    vertical-align: middle;
+    background: transparent;
+    border: solid 3px azure;
+    color: aliceblue;
+    font-weight: normal;
+}
+
+textarea {
+    color: azure;
+    background-color: transparent;
+    color: azure;
+    resize: none;
+    border-color: lightcyan;
+    border: solid;
+    text-align: left;
+}
+
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    border: 4px solid #0000;
+    border-radius: 50%;
+    border-right-color: #25b09b;
+    animation: l15 1s infinite linear;
+}
+
+.loader::before,
+.loader::after {
+    content: "";
+    grid-area: 1/1;
+    margin: 2px;
+    border: inherit;
+    border-radius: 50%;
+    animation: l15 2s infinite;
+}
+
+.loader::after {
+    margin: 8px;
+    animation-duration: 3s;
+}
+
+@keyframes l15 {
+    100% {
+        transform: rotate(1turn)
+    }
+}
+
+/*navbar settings*/
+#navBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 6rem;
+    transition-property: height;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+    transform-style: flat;
+    overflow: hidden;
+    position: fixed;
+    top:0rem;
+    z-index: 1;
+    padding-bottom: 1rem;
+}
+
+#navBar div {
+    display: flex;
+    flex-direction: row;
+    height: 6rem;
+    align-items: center;
+}
+
+#navBar a {
+    text-align: center;
+}
+#navBar a:hover, #navBar span:hover {
+    color: greenyellow;
+}
+
+#navBar a>img {
+    margin-right: 1rem;
+}
+
+.linksNavBar {
+    display: none;
+    transition: background-color 0.3s ease-in;
+}
+
+.expandir {
+    height: 20rem !important;
+}
+
+#navBar div input {
+    color: black;
+    border-radius: 1rem;
+    border: none;
+    height: 2.3rem;
+    margin-right: 1rem;
+    text-align: center;
+}
+
+#navBar div input::placeholder {
+    text-align: center;
+    color: black;
+}
+
+.ctnResultadoPesquisa {
+    display: flex;
+    flex-direction: column;
+    /* position: absolute; */
+    opacity: 0.99;
+    top: 6rem;
+    z-index: 1;
+    position: fixed;
+}
+
+/*infoPerfil*/
+
+#infoPerfilContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#infoPerfilContainer form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    /* margin-bottom: 3rem; */
+}
+
+#infoPerfilContainer form button,
+#ctnModificarSenha button {
+    background-color: #03C988;
+    color: #000;
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: 0.6rem;
+}
+
+/* #infoPerfilContainer form div {
+    display: flex;
+    justify-content: space-around;
+} */
+
+
+/* #infoPerfilContainer form>* {
+    margin: 0.6rem;
+} */
+
+#ctnInteragirDadosUsuario {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#infoPerfilContainer>div * {
+    margin-top: 1rem;
+    margin-bottom: 1rem !important;
+}
+
+#infoPerfilContainer>input {
+    width: fit-content;
+}
+
+aside {
+    background: rgb(0 0 0 / 20%);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* backdrop-filter: blur(5px); */
+    border: 1px solid rgba(1, 1, 1, 0.3);
+}
+
+aside>div {
+    display: flex;
+    overflow: auto;
+    align-items: center;
+}
+
+aside section {
+    margin-left: 1rem;
+}
+
+#formPerfil:last-child {
+    display: flex;
+    justify-content: space-around;
+}
+
+#btnEditarPerfil,
+#btnEditarSenha {
+    background-color: dodgerblue;
+}
+
+.ctnInputPerfil:disabled {
+    background-color: black;
+    color: aliceblue;
+}
+
+.ctnInputPerfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctnInputPerfil > label  {
+    margin: 1rem;
+}
+
+/* resultadoPesquisa */
+
+.livroEncontrado {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.3rem;
+    background-color: #212529;
+}
+
+/*containerLivrosDisponiveis*/
+
+#containerLivrosDisponiveis {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    margin-top: 1rem
+}
+
+#containerLivrosDisponiveis .containerLivro {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.containerLivro h2 {
+    text-align: center;
+}
+
+/* container de botoes para indice de livros*/
+
+.ctnBotoesIndice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.ctnBotoesIndice button {
+    margin-right: 0.6rem;
+    background-color: rgb(142, 142, 142);
+    color: black !important;
+}
+
+.ctnBotoesIndice button:focus {
+    background-color: #03C988;
+    color: #0E2954 !important;
+}
+
+/*detalhesSobreLivro*/
+
+#detalhesSobreLivro {
+    flex-direction: column;
+    display: flex;
+    /* margin-left: 1rem; */
+    margin-bottom: 1rem;
+}
+
+
+
+#detalhesSobreLivro > div:not(#quiz) {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+
+#ctnAvaliacaoLogado {
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#ctnAvaliacaoLogado input {
+    margin-bottom: 1rem;
+    border: none !important;
+}
+
+.txtInfoLivro {
+    margin-left: 1.6rem;
+}
+
+#detalhesSobreLivro>input {
+    width: auto;
+    border: none;
+    border-bottom: solid 0.1rem greenyellow;
+    background: transparent;
+}
+
+#ctnInteracoesLivro {
+    margin-top: 1rem;
+}
+
+#btnRespondeQuiz{
+    background: rgb(0 0 0 / 0%);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px #fff;
+    border: 1px solid #f8f9fa;   
+}
+
+#ctnInteracoesLivro:first-child{
+    background: rgb(0 0 0 / 0%);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px #03c988;
+    border: 1px solid #03c988;
+}
+
+#ctnInteracoesLivro:last-child{
+    background: rgb(0 0 0 / 0%);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px #ffc107;
+    border: 1px solid #ffc107;
+}
+
+
+#ctnInteracoesLivro>button,
+#ctnInteracoesLivro>a {
+    padding: 0.6rem;
+    border: solid 0.1rem azure;
+    border-radius: 1rem
+}
+
+#quiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+#ctnAvaliacoesDosUsuarios {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ctnAvaliacoesDosUsuarios>div {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ctnAvaliacaoComentario {
+    display: flex;
+    border-radius: 1rem;
+    flex-direction: column;
+    margin: 1rem;
+    border-radius: 1rem;
+    background: rgb(0 0 0 / 30%); 
+    border-radius: 16px; 
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    align-items: center;
+}
+
+.ctnAvaliacaoComentario > p {
+    font-style: italic;
+    text-align: center;
+    word-break: break-word;
+}
+
+
+#containerAvaliacaoDeUsuario>div {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#containerAvaliacaoDeUsuario>h3 {
+    text-align: center;
+}
+
+.starUnicode {
+    opacity: 0.1;
+}
+
+.estrelasContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.estrelasContainer>input[type="radio"]:checked~.starUnicode {
+    opacity: 1;
+}
+
+.starUnicode:focus {
+    opacity: 1;
+}
+
+/*containerAvaliacaoDeUsuario*/
+
+#containerAvaliacaoDeUsuario {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#containerBotoesAddFav {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+#btnAddListaLeitura {
+    background: rgba(0, 0, 0, 0.49);
+    border-radius: 1rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#ctnAvaliacaoLogado > button,
+#btnFavoritar {
+    background: rgba(0, 0, 0, 0.49);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    width: 7rem;
+}
+
+/*placar de lideres pagina*/
+
+#ctnPlacarDeLideres {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ctnPontosUsuario {
+    text-align: center;
+    margin: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px #03c988;
+    border: 1px solid rgb(0 0 0);
+  
+}
+
+.ctnPontosUsuario:first-child {
+    color: gold;
+}
+
+.ctnPontosUsuario h3 {
+    margin-top: 1rem;
+}
+
+/*quiz*/
+
+.ctnAlternativas:has(input:checked) {
+    background-color:#198754;
+}
+
+.ctnAlternativas:focus {
+    color: black;
+}
+
+/*gerais*/
+
+.bgDarkGlass {
+    background: rgba(33, 37, 41, 0.72);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(33, 37, 41, 1);
+}
+
+.botoesVerde {
+    color: #000;
+    border: none;
+    padding: 0.2rem;
+    background-color: #03C988;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.botaoAzul {
+    color: #000;
+    border: none;
+    padding: 0.2rem;
+    background-color: #0dcaf0;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+label {
+    text-align: center;
+}
+
+.esconderContainer {
+    display: none !important;
+}
+
+.centralizaTexto {
+    text-align: center;
+}
+
+div form input {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 576px){
+    .margemSobreNavBar{
+        margin-top: 6.3rem;
+    }
+}
+
+/*desktop sizing*/
+
+@media only screen and (min-width: 576px) {
+
+    textarea {
+        width: 30rem;
+        height: 9.3rem;
+    }
+
+    .ctnBotoesIndice {
+        margin-top: unset;
+    }
+
+    /*navbar*/
+    #navBar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center; 
+        justify-content: space-around;
+        height: 6rem;
+        transition-property: height;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in;
+        transform-style: flat;
+        overflow: hidden;
+        position: static;
+        padding-bottom: initial;
+    }
+
+    #navBar div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #navBar div>button {
+        display: none;
+    }
+
+    .linksNavBar {
+        display: block;
+    }
+
+    .containerLivro>p,
+    .tituloLivro {
+        font-size: small;
+    }
+
+    /*pagina galeria de livros */
+    #containerLivrosDisponiveis {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .ctnResultadoPesquisa {
+        position: absolute;
+        z-index: 1;
+        margin-left: 1rem;
+    }
+
+    /*página perfil*/
+
+    #infoPerfilContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #ctnPlacarDeLideres {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #infoPerfilContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    #ctnAvaliacoesDosUsuarios {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ctnAvaliacaoComentario>*:not(h3) {
+        margin: 6.1px;
+    }
+
+    #ctnAvaliacoesDosUsuarios>div {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #ctnAvaliacaoLogado > button, #btnFavoritar, #btnAddListaLeitura{
+        padding: 1rem;
+        width:auto;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    #ctnInteragirDadosUsuario {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+
+    .ctnAvaliacaoComentario{
+        flex-direction: row;
+    }
+}
+
+@media only screen and(max-width: 768px){
+    #ctnInteragirDadosUsuario > *{
+        margin-right: 1rem;
+    }
+   
+}
+
+/*animations*/
+
+@keyframes surgir {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation-name: surgir;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+/*efeito de zoom*/
+@keyframes zoomForward {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+
+/*efeito deslizante*/
+@keyframes tilt-in-fwd-tr {
+    0% {
+        -webkit-transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg);
+        transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+        transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+        opacity: 1;
+    }
+}
+
+/*sacode elemento*/
+@keyframes wobble-hor-bottom {
+
+    0%,
+    100% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        -webkit-transform: translateX(-30px) rotate(-6deg);
+        transform: translateX(-30px) rotate(-6deg);
+    }
+
+    30% {
+        -webkit-transform: translateX(15px) rotate(6deg);
+        transform: translateX(15px) rotate(6deg);
+    }
+
+    45% {
+        -webkit-transform: translateX(-15px) rotate(-3.6deg);
+        transform: translateX(-15px) rotate(-3.6deg);
+    }
+
+    60% {
+        -webkit-transform: translateX(9px) rotate(2.4deg);
+        transform: translateX(9px) rotate(2.4deg);
+    }
+
+    75% {
+        -webkit-transform: translateX(-6px) rotate(-1.2deg);
+        transform: translateX(-6px) rotate(-1.2deg);
+    }
+}
+
+@keyframes flip-horizontal-bottom {
+    0% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+    }
+
+    100% {
+        -webkit-transform: rotateX(-180deg);
+        transform: rotateX(-180deg);
+    }
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.wobble-hor-bottom {
+	-webkit-animation: wobble-hor-bottom 1s infinite both;
+	        animation: wobble-hor-bottom 1s infinite both;
+}
+
+.tilt-in-fwd-tr {
+    -webkit-animation: tilt-in-fwd-tr 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: tilt-in-fwd-tr 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.zoomingAnimation {
+    animation-name: zoomForward;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+}
+
+.flip-horizontal-bottom {
+    -webkit-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation-direction: reverse;
+}
+
+.textSlide {
+    -webkit-animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+.bgAnim {
+    background: linear-gradient(270deg, #2b2a4c, #4d0773);
+    background-size: 400% 400%;
+
+    animation: AnimationName 3s ease infinite;
+}
+
+@keyframes bgGradientAnim {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
