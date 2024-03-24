@@ -27,7 +27,7 @@ class UsuarioBiblioteca
         try {
             $this->nick_usuario = $nick;
             $conexaoDoBanco = ConexaoSql::conectarAoBanco();
-            $statement = $conexaoDoBanco->prepare("SELECT * FROM USUARIOS WHERE nick_usuario = :nick_usuario");
+            $statement = $conexaoDoBanco->prepare("SELECT * FROM usuarios WHERE nick_usuario = :nick_usuario");
             $statement->bindValue(":nick_usuario", $this->nick_usuario);
             $statement->execute();
             $resultadoPesquisa = $statement->rowCount();
@@ -46,7 +46,7 @@ class UsuarioBiblioteca
             $this->senha_usuario = $senha_usuario;
             $this->senha_usuario = password_hash($this->senha_usuario, PASSWORD_DEFAULT);
             $conexaoDoBanco = ConexaoSql::conectarAoBanco();
-            $statement = $conexaoDoBanco->prepare("INSERT INTO USUARIOS(nick_usuario, senha_usuario) VALUES (:nick_usuario, :senha_usuario)");
+            $statement = $conexaoDoBanco->prepare("INSERT INTO usuarios(nick_usuario, senha_usuario) VALUES (:nick_usuario, :senha_usuario)");
             $statement->bindValue(':nick_usuario', $this->nick_usuario);
             $statement->bindValue(':senha_usuario', $this->senha_usuario);
             $statement->execute();
@@ -63,7 +63,7 @@ class UsuarioBiblioteca
             $this->nick_usuario = $nick_usuario;
             $this->senha_usuario = $senha_usuario;
             $conexaoDoBanco = ConexaoSql::conectarAoBanco();
-            $statement = $conexaoDoBanco->prepare('SELECT * FROM USUARIOS WHERE NICK_USUARIO = :nick_usuario');
+            $statement = $conexaoDoBanco->prepare('SELECT * FROM usuarios WHERE NICK_USUARIO = :nick_usuario');
             $statement->bindValue(':nick_usuario', $this->nick_usuario);
             $statement->execute();
             $DadosUsuario = $statement->fetch(pdo::FETCH_ASSOC);
@@ -507,29 +507,3 @@ class UsuarioBiblioteca
     }
     
 }
-
-
-
-
-
-    
-    
-
-
-
-
-
-
-
-
-/*public function adicionarListaDeLeitura(int $id_usuario, int $id_livro){
-        $this->id_usuario = $id_usuario;
-        $conexaoDoBanco = ConexaoSql::conectarAoBanco();
-        $statement = $conexaoDoBanco->prepare('INSERT INTO usuarios(id_usuario, id_livro) VALUES(:id_usuario, :id_livro)');
-        $statement->bindValue(':id_usuario', $this->id_usuario);
-        $statement->bindValue(':id_livro', $id_livro);
-        $resultado  = $statement->execute();
-        if($resultado){
-            echo json_encode(['mensagem'=>'Livro adicionado a lista de leitura.']);
-        }
-     */ //pra nao ficar muito preso a json

@@ -1,4 +1,3 @@
-
 function criarTextoParaAviso(texto, idContainer = null, domCtn = null, animationClass = null, timeout = null, colorTxt = null) {
     if(document.querySelector(".textoAviso")){
         document.querySelector(".textoAviso").remove();
