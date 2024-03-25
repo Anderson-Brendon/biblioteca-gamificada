@@ -1,5 +1,4 @@
 <?php
-
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/admin-livros.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/livro.php";
 
@@ -29,18 +28,18 @@ $nomeImg = $_FILES['imagem_livro']['name'];
 
 $nomePdf = $_FILES['arquivo_pdf']['name'];
 
-$extensaoImg = pathinfo($nomeImg, PATHINFO_EXTENSION);
+move_uploaded_file($imgLivro, $caminhoImagensLivro . $nomeImg);
 
-move_uploaded_file($imgLivro, $caminhoImagensLivro . $titulo.".".$extensaoImg);
-
-move_uploaded_file($arquivoPdf , $caminhoPdfsLivro . $titulo.".".'pdf');
+move_uploaded_file($arquivoPdf , $caminhoPdfsLivro . $nomePdf);
 
 $caminhoCompletoImg = '/resources/imagens/livros/'.$titulo.'.'.$extensaoImg;
 
 $caminhoCompletoPdf = '/resources/livros-pdf/'.$titulo.'.pdf';
 
-$livro = new Livro(null,$titulo,$dataPublicacao,$autor,$categoria, $caminhoCompletoPdf, $caminhoCompletoImg);
+$livro = new Livro(null,$titulo,$dataPublicacao,$autor,$categoria, $caminhoCompletoPdf, $caminhoCompletoImg, $descricao);
 
 $adminLivro = new AdminLivros();
 
 $adminLivro->adicionarLivro($livro);
+
+header('location:/admin/adicionar-livro');

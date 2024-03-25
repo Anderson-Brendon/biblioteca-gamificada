@@ -15,7 +15,7 @@ class Redirecionar{
     }
 
     static function usuarioSemAdmin(string $rotaRedirecionamento){
-        if($_SESSION['nivel_de_acesso'] < 1){
+        if($_SESSION['nivel_de_acesso'] < 1 || !isset($_SESSION['nivel_de_acesso'])){
             header('location:'.$rotaRedirecionamento);
             setcookie('msg',"Você não tem permissão para acessar essa página",time() - 1,'/');
         }

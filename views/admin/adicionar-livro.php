@@ -7,8 +7,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/models/redirecionar.php';
 
 Redirecionar::usuarioSemAdmin('/galeria-de-livros');?> 
 
-?>
-
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/navbar-admin.php'; ?>
 
 

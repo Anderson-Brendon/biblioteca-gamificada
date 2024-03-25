@@ -204,7 +204,7 @@ function realizaCadastro() {
     if (inputNick.value.length >= 6 && inputSenha.value.length >= 6) {
         fetch("/armazenar-usuario", {
             method: "POST",
-            mode: "cors",
+            mode: "same-origin",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
                 'Accept': 'application/json'
@@ -264,7 +264,7 @@ botoesDeindice.forEach((botao) => {
 function solicitarLivrosPaginados(offset) {
     fetch(`/livros-paginados?offset=${offset * 8}`, {
         method: "GET",
-        mode: "cors",
+        mode: "same-origin",
     }).then(resposta => resposta.json())
         .then(livrosRecebidos => {
             let fragmentoHtml = new DocumentFragment;
@@ -329,7 +329,7 @@ function favoritarLivro() {
     let parametro = new URLSearchParams(document.location.search);
     fetch("/armazenar-favorito", {
         method: "POST",
-        mode: "cors",
+        mode: "same-origin",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             'Accept': 'application/json'
@@ -356,7 +356,7 @@ function removerDosFavoritos() {
     let parametro = new URLSearchParams(document.location.search);
     fetch("/deletar-favorito", {
         method: "DELETE",
-        mode: "cors",
+        mode: "same-origin",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             'Accept': 'application/json'
@@ -399,7 +399,7 @@ function adicionarListaDeLeitura() {
     let parametro = new URLSearchParams(document.location.search);
     fetch("/armazenar-livro-lista", {
         method: "POST",
-        mode: "cors",
+        mode: "same-origin",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             'Accept': 'application/json'
@@ -429,7 +429,7 @@ function removerDaListaDeLeitura() {
     let parametro = new URLSearchParams(document.location.search);
     fetch("/deletar-livro-lista", {
         method: "DELETE",
-        mode: "cors",
+        mode: "same-origin",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             'Accept': 'application/json'
@@ -558,7 +558,7 @@ function enviarAvaliacao() {
         let parametro = new URLSearchParams(document.location.search);
         fetch("/armazenar-avaliacao", {
             method: "POST",
-            mode: "cors",
+            mode: "same-origin",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
                 'Accept': 'application/json'
@@ -649,7 +649,7 @@ function enviarComentarioEditado(){
     let parametro = new URLSearchParams(document.location.search);
     fetch("/atualizar-comentario", {
         method: "PUT",
-        mode: "cors",
+        mode: "same-origin",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             'Accept': 'application/json'
@@ -996,7 +996,7 @@ function exibirLivrosEmListaDeLeitura(livrosUsuario, nomeLista) {
         <div class="mt-3 d-flex justify-content-center">
         <label for="paginaInput">Salvar Página:   </label>
         <input id-livro="${livro.id_livro}" value="${livro.pagina_salva}" class="paginaInput" name="paginaInput" type="number" class="col-3">
-        <button class="col-1 col-md-3" id="btnSalvaPagina" type="button" onclick="salvarPagina(this)">
+        <button class="col-1 col-md-3" class="btnSalvaPagina" type="button" onclick="salvarPagina(this)">
         <img class="col-9 col-md-3" src="/resources/icons/disk-svgrepo-com.svg">
         </button>
         </div>
@@ -1010,11 +1010,11 @@ function exibirLivrosEmListaDeLeitura(livrosUsuario, nomeLista) {
 }
 
 function salvarPagina(alvoEvento) {
-    let paginaInput = alvoEvento.previousElementSibling("paginaInput");
+    let paginaInput = alvoEvento.previousElementSibling;
 
     fetch("/atualizar-pagina", {
         method: "PUT",
-        mode: "cors",
+        mode: "same-origin",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             'Accept': 'application/json'
@@ -1035,7 +1035,7 @@ function salvarPagina(alvoEvento) {
 function marcarLivroComoLido(alvoEvento) {
     fetch("/marcar-lido", {
         method: "PUT",
-        mode: "cors",
+        mode: "same-origin",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             'Accept': 'application/json'
@@ -1118,7 +1118,7 @@ function removerFavorito(btn) {
 
     fetch(`/deletar-favorito?id_livro=${id_livro_param}`, {
         method: "DELETE",
-        mode: "cors",
+        mode: "same-origin",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             'Accept': 'application/json'

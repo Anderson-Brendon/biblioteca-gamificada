@@ -119,13 +119,14 @@ class AdminLivros
         try {
             $this->livro = $livro;
             $conexaoDoBanco = ConexaoSql::conectarAoBanco();
-            $statement = $conexaoDoBanco->prepare("INSERT INTO livros(autor_livro, titulo_livro, data_publicacao, imagem_livro, arquivo_pdf, id_categoria) VALUES(:autor_livro, :titulo_livro, :data_publicacao, :imagem_livro, :arquivo_pdf, :id_categoria)");
+            $statement = $conexaoDoBanco->prepare("INSERT INTO livros(autor_livro, titulo_livro,descricao, data_publicacao, imagem_livro, arquivo_pdf, id_categoria) VALUES(:autor_livro, :titulo_livro,:descricao, :data_publicacao, :imagem_livro, :arquivo_pdf, :id_categoria)");
             $statement->bindValue(":autor_livro", $this->livro->autor_livro);
             $statement->bindValue(":titulo_livro", $this->livro->titulo_livro);
             $statement->bindValue(":data_publicacao", $this->livro->data_publicacao);
             $statement->bindValue(":imagem_livro", $this->livro->imagem_livro);
             $statement->bindValue(":id_categoria", $this->livro->categoria_do_livro);
             $statement->bindValue(":arquivo_pdf", $this->livro->arquivo_pdf);
+            $statement->bindValue(":descricao", $this->livro->descricao);
             $statement->execute();
         } catch (PDOException $erro) {
             echo $erro->getMessage();

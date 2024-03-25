@@ -15,9 +15,10 @@ class Livro
     public ?int $categoria_do_livro;
     public ?string $imagem_livro;
     public ?int $numero_paginas;
+    public ?string $descricao;
 
 
-    public function __construct($id_livro = null, $titulo_livro = null,$data_publicacao = null,  $autor_livro = null,  $categoria_do_livro = null,  $arquivo_pdf = null, $imagemLivro = null)
+    public function __construct($id_livro = null, $titulo_livro = null,$data_publicacao = null,  $autor_livro = null,  $categoria_do_livro = null,  $arquivo_pdf = null, $imagemLivro = null, $descricao = null)
     {
         $this->id_livro = $id_livro;
         $this->titulo_livro = $titulo_livro;
@@ -26,6 +27,7 @@ class Livro
         $this->categoria_do_livro = $categoria_do_livro;
         $this->arquivo_pdf = $arquivo_pdf;
         $this->imagem_livro = $imagemLivro;
+        $this->descricao = $descricao;
     } 
 
 }

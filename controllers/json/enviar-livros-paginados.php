@@ -1,6 +1,5 @@
 <?php 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/admin-livros.php";
-require_once 'headers.php';
 
 // $intervalos = file_get_contents("php://input",true);
 $offset = $_GET["offset"];

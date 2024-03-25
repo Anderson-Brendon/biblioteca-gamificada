@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/models/usuario-biblioteca.php';
 require_once $_SERVER['DOCUMENT_ROOT']."/models/valida-dados.php";
-require_once 'headers.php';
+
 
 $dadosUsuario = file_get_contents("php://input", true);
 $dadosUsuario  = json_decode($dadosUsuario, true);
