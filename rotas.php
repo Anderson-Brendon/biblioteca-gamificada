@@ -1,5 +1,4 @@
 <?php 
-//mudar pra const pra testar
 
 const routesGet = [
     '/' => '/views/usuario/login-cadastro.php',
