@@ -1,6 +1,6 @@
 create database biblioteca_gamificada;
 
-create table usuarios(id_usuario int primary key AUTO_INCREMENT, 
+create table usuarios(id_usuario int PRIMARY KEY AUTO_INCREMENT, 
 nick_usuario varchar(255), 
 senha_usuario varchar(255), 
 caminho_imagem_perfil varchar(255) default '/resources/imagens/usuarios/perfil-padrao.jpg', 
@@ -11,12 +11,12 @@ codigo_de_recuperacao int(6),
 email varchar(255) default 'nao_definido',
 pontos_totalizados_de_quiz int default 0,
 citacao_favorita varchar(255) default 'Citação não definida', 
-autor_citacao varchar(255) default 'Valor padrão do MySql' );
+autor_citacao varchar(255) default 'Nada por aqui' );
 
-create table categoria_livro(id_categoria int primary key AUTO_INCREMENT,  nome_categoria varchar(255) not null);
+create table categoria_livro(id_categoria int PRIMARY KEY AUTO_INCREMENT,  nome_categoria varchar(255) not null);
 
 create table livros(
-  id_livro int primary key AUTO_INCREMENT,
+  id_livro int PRIMARY KEY AUTO_INCREMENT,
   titulo_livro varchar(255) UNIQUE,
   data_publicacao date, 
   media_avaliacao_livro int default 0, 
@@ -32,10 +32,10 @@ create table livros(
   qtd_paginas int, 
   FOREIGN KEY(id_categoria) REFERENCES categoria_livro(id_categoria));
 
-create table autores(primary key id_autor AUTO_INCREMENT, nome_autor)
+create table autores( id_autor int PRIMARY KEY AUTO_INCREMENT, nome_autor varchar(255) NOT NULL)
 
 create table avaliacoes_de_usuarios(
-  id_avaliacao int primary key AUTO_INCREMENT,
+  id_avaliacao int PRIMARY KEY AUTO_INCREMENT,
   comentario varchar(255) DEFAULT 'Comentário indisponível',
   nota_para_livro int not null,
   id_usuario int not null,
@@ -51,7 +51,7 @@ create table livros_favoritos_usuario(
   FOREIGN KEY(id_livro) references livros(id_livro) ON DELETE CASCADE);
 
 create table lista_de_leitura_usuario(
-    primary key (id_usuario, id_livro), 
+    PRIMARY KEY (id_usuario, id_livro), 
     id_usuario int not null, 
     id_livro int not null,
     esta_lido tinyint default 0, 
@@ -61,7 +61,7 @@ create table lista_de_leitura_usuario(
 
 
 create table perguntas_de_quiz(
-    id_pergunta int primary key AUTO_INCREMENT, 
+    id_pergunta int PRIMARY KEY AUTO_INCREMENT, 
     quiz_questao text, alternativa_A varchar(255), 
     alternativa_B varchar(255), 
     alternativa_C varchar(255), 

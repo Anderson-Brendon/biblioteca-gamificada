@@ -23,7 +23,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/views/livros/detalhes-sobre-livro-gue
 
 
 <?php 
-$msg = "Todos os livros aqui estão sob domínio público, então não existe crime de pirataria, ok?";
+$msg = "Projeto pessoal para melhorar os conhecimentos em javascript e php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php' ?>
 
 <!--é offset/deslocamento pora nao inicio e  sempre é o msm-->

@@ -5,9 +5,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/admin-livros.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/redirecionar.php';
 
-Redirecionar::usuarioSemAdmin('/galeria-de-livros');?> 
+Redirecionar::usuarioSemAdmin('/galeria-de-livros');
 
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/navbar-admin.php'; ?>
+require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/navbar-admin.php'; ?>
 
 
 <main class="d-flex justify-content-center">

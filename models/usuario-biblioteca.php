@@ -22,7 +22,7 @@ class UsuarioBiblioteca
         return $conectado;
     }
 
-    public function usuarioExiste($nick):bool
+    public function usuarioExiste($nick)
     {
         try {
             $this->nick_usuario = $nick;
@@ -110,17 +110,15 @@ class UsuarioBiblioteca
             $statement->bindValue(':id_usuario', $this->id_usuario, PDO::PARAM_INT);
             $statement->bindValue(':senha_usuario', password_hash($this->senha_usuario, PASSWORD_DEFAULT), PDO::PARAM_STR);
             $statement->bindValue(':caminho_imagem_perfil', $this->caminho_imagem_perfil, PDO::PARAM_STR);
-            $bool = $statement->execute();
-            if ($bool) {
-                return ['mensagem' => 'Senha modificada'];
-            }
+            //$bool = $statement->execute();
+            return ['mensagem' => 'Senha modificada'];
         } catch (PDOException $erro) {
             $mensagemErro = $erro->getMessage();
-            return (['erroPdo' => $mensagemErro]);
+            return ['erroPdo' => $mensagemErro];
         }
     }
 
-    public function carregarInfoPerfilUsuario(int $id_usuario):array
+    public function carregarInfoPerfilUsuario(int $id_usuario)
     {
         try {
             $this->id_usuario = $id_usuario;
@@ -188,7 +186,7 @@ class UsuarioBiblioteca
     }
 
     // se nao especificar int em sessao vai funcionar pq o id é int na sessao mas url nao
-    public function carregarListaLivrosLidos(int $id_usuario):array|bool
+    public function carregarListaLivrosLidos(int $id_usuario)
     {
         try {
             $this->id_usuario = $id_usuario;
@@ -430,8 +428,9 @@ class UsuarioBiblioteca
             $statement->bindValue(":id_livro", $id_livro, PDO::PARAM_INT);
             $statement->bindValue(":nota_para_livro", $this->nota_para_livro, PDO::PARAM_INT);
             $statement->bindValue(":comentario", $this->comentario);
-            $statement->execute();
-            return ['mensagemOk' => 'Comentario adicionado'];
+            $bool = $statement->execute();
+            return $bool;
+            //return ['mensagemOk' => 'Comentario adicionado'];
         } catch (PDOException $erro) {
             return ['erroPdo' => $erro];
         }

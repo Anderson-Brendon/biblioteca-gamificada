@@ -70,27 +70,28 @@ function iniciaContagemParaResponder(){
 }
 
 function criarContainerDePergunta(perguntaQuiz) {
+    console.log(perguntaQuiz.texto_de_pergunta);
     contagemRegressivaNum = 30;
     clearInterval(idContagem);
     quizContainer.innerHTML = "";
     quizContainer.insertAdjacentHTML("afterbegin",
     `<div style="border: solid 1px black;border-radius:1rem" class="col-md-9 p-3 bgDarkGlass flex-column justify-content-center align-items-center mt-3 mb-3">
-    <h3 style="color:gold" id="perguntaTxt">${perguntaQuiz.texto_de_pergunta}</h3>
+    <h3 style="color:gold" id="perguntaTxt">${perguntaQuiz.quiz_questao}</h3>
     <h3 id="exibeContagem">${contagemRegressivaNum}</h3>
     <div style="border-radius:1rem" class="d-flex flex-column mt-3 ctnAlternativas">
-        <label style="border-radius:1rem" class="border border-secondary alternativas" for="altA">${perguntaQuiz.alternativa_a}</label>
+        <label style="border-radius:1rem" class="border border-secondary alternativas" for="altA">${perguntaQuiz.alternativa_A}</label>
         <input type="radio" name="alternativa" id="altA" value="A" class="d-none">
     </div>
     <div style="border-radius:1rem" class="d-flex flex-column mt-3 ctnAlternativas">
-        <label style="border-radius:1rem" class="border border-secondary alternativas" for="altB">${perguntaQuiz.alternativa_b}</label>
+        <label style="border-radius:1rem" class="border border-secondary alternativas" for="altB">${perguntaQuiz.alternativa_B}</label>
         <input type="radio" name="alternativa" id="altB" value="B" class="d-none">
     </div>
     <div style="border-radius:1rem" class="d-flex flex-column mt-3 ctnAlternativas">
-        <label  style="border-radius:1rem" class="border border-secondary alternativas" for="altC">${perguntaQuiz.alternativa_c}</label>
+        <label  style="border-radius:1rem" class="border border-secondary alternativas" for="altC">${perguntaQuiz.alternativa_C}</label>
         <input type="radio" name="alternativa" id="altC" value="C" class="d-none">
     </div>
     <div style="border-radius:1rem" class="d-flex flex-column mt-3 ctnAlternativas">
-        <label style="border-radius:1rem" class="border border-secondary alternativas" for="altD">${perguntaQuiz.alternativa_d}</label>
+        <label style="border-radius:1rem" class="border border-secondary alternativas" for="altD">${perguntaQuiz.alternativa_D}</label>
         <input type="radio" name="alternativa" id="altD" value="D" class="d-none">
     </div>
     <div id="ctnBotoesResposta" class="d-flex justify-content-around align-items-center mt-3 mb-3">

@@ -26,15 +26,17 @@ $arquivoPdf = $_FILES['arquivo_pdf']['tmp_name'];
 
 $nomeImg = $_FILES['imagem_livro']['name'];
 
+$extensaoImg = explode(".",$nomeImg)[0];
+
 $nomePdf = $_FILES['arquivo_pdf']['name'];
 
 move_uploaded_file($imgLivro, $caminhoImagensLivro . $nomeImg);
 
 move_uploaded_file($arquivoPdf , $caminhoPdfsLivro . $nomePdf);
 
-$caminhoCompletoImg = '/resources/imagens/livros/'.$titulo.'.'.$extensaoImg;
+$caminhoCompletoImg = '/resources/imagens/livros/'.$nomeImg;
 
-$caminhoCompletoPdf = '/resources/livros-pdf/'.$titulo.'.pdf';
+$caminhoCompletoPdf = '/resources/livros-pdf/'.$nomePdf;
 
 $livro = new Livro(null,$titulo,$dataPublicacao,$autor,$categoria, $caminhoCompletoPdf, $caminhoCompletoImg, $descricao);
 

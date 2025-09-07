@@ -51,7 +51,7 @@ Redirecionar::usuarioEmSessao('/galeria-de-livros'); ?>
             </div>
             <div class="d-flex justify-content-between">
                 <button type="button" id="criarContaBotao" onclick="realizaCadastro()" class="botoesVerde">Criar conta</button>
-                <button id="botaoMostraLogin" type="button" class="botaoAzul botoesCadastroRetorna">Voltar</button>
+                <button id="botaoMostraLogin" type="button" class="botaoAzul botoesCadastroRetorna">Login</button>
             </div>
         </form>
     </div>
@@ -61,5 +61,5 @@ Redirecionar::usuarioEmSessao('/galeria-de-livros'); ?>
     </div>
 </main>
 
-<?php $msg = 'Todos os livros aqui estão sob domínio público, então não existe crime de pirataria, ok?';
+<?php $msg = 'Php enjoyer';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>

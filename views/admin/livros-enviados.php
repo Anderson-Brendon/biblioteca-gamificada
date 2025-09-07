@@ -1,17 +1,17 @@
 <?php 
 session_start();
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/admin-livros.php';
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/redirecionar.php'; 
-Redirecionar::usuarioSemAdmin('/admin/login-admin');
-
-$titulo = 'Livros Enviados';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/navbar-admin.php';
 
+Redirecionar::usuarioSemAdmin('/');
+
+$titulo = 'Livros Enviados';
+
 
 $livros = new AdminLivros();
+
 $listaLivros = $livros->carregarTodosLivros();
 ?>
 

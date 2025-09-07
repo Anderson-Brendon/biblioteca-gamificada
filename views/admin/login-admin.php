@@ -1,9 +1,10 @@
-<?php session_start();
+<?php
+session_start();
 $titulo = 'Login adm';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/redirecionar.php';
 
-Redirecionar::usuarioEmSessao('/galeria-de-livros');
+Redirecionar::usuarioEmSessao("/galeria-de-livros");
 
 ?>
 

@@ -75,9 +75,10 @@ class AdminLivros
             $statement->bindValue(":id_livro",$id_livro, pdo::PARAM_INT);
             $statement->bindValue(":nota_para_livro",$nota_para_livro, pdo::PARAM_INT);
             $bool = $statement->execute();
-            if($bool){
+            return $bool;
+            /*if($bool){
                 return ['mensagemOk'=>'valores atualizados'];
-            }
+            }*/
         } catch (\PDOException $erro) {
             $msgErro = $erro->getMessage();
             return ['erroPdo' => $msgErro];
@@ -88,9 +89,10 @@ class AdminLivros
             $conexaoDoBanco = ConexaoSql::conectarAoBanco();
             $statement = $conexaoDoBanco->prepare("UPDATE livros SET media_avaliacao_livro = total_de_notas_somadas / qtd_avaliacoes_usuarios");
             $bool = $statement->execute();
-            if($bool){
+            return $bool;
+            /*if($bool){
                 return ['mensagemOk'=>'media atualizada'];
-            }
+            }*/
         } catch (\PDOException $erro) {
             $msgErro = $erro->getMessage();
             return ['erroPdo' => $msgErro];

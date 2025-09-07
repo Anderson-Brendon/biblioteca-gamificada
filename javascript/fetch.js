@@ -1,70 +1,3 @@
-function criarTextoParaAviso(texto, idContainer = null, domCtn = null, animationClass = null, timeout = null, colorTxt = null) {
-    if(document.querySelector(".textoAviso")){
-        document.querySelector(".textoAviso").remove();
-    }
-    let p = document.createElement("p");
-    p.style.textAlign = "center";
-    p.textContent = texto;
-    p.classList.add("textoAviso");
-    if (animationClass) {
-        p.classList.add(animationClass);
-    }
-    if (timeout) {
-        setTimeout(() => {
-            p.remove();
-        }, timeout)
-    }
-    if (colorTxt) {
-        p.style.color = colorTxt;
-    }
-    if(idContainer){
-        let container = document.getElementById(idContainer);
-        container.prepend(p);
-    }else{
-        domCtn.prepend(p);
-    }
-}
-
-function destacaUrl(){
-    anchorTags = document.querySelectorAll("nav a");
-    for (const tag of anchorTags) {
-        if(tag.href === document.location.href){
-            tag.style.color = "greenyellow";
-        }
-    }
-}
-
-destacaUrl();
-
-function alternaExibicaoSenha(alvo) {
-    let idInput = alvo.getAttribute("psw");
-    let input = document.getElementById(idInput);
-    if(input.type === "password"){
-        input.type = "text";
-    }else{
-        input.type = "password";
-    }
-}
-
-function habilitaInput(tag) {
-    tag.removeAttribute("disabled");
-}
-
-function desativaInput(tag) {
-    tag.setAttribute("disabled", "true");
-}
-
-function insereAnimacaoCarregamento(){
-    let div = document.createElement("div");
-    div.classList.add("loader");
-    return div;
-}
-
-function removeContainerPai(alvo) {
-    let container = alvo.parentNode;
-    container.remove();
-}
-
 /*NavBar logica */
 
 //alterna containers de login e cadastro
@@ -80,7 +13,6 @@ if(botoesCadastroRetorna){
         })
     });
 }
-
 
 function alternaCtnLoginCadastro(){
     if (containerCadastro.classList.contains("esconderContainer")) {
@@ -579,7 +511,9 @@ function enviarAvaliacao() {
 
 function fixarComentarioEnviado(nota, comentario) {
     let ctnNotaComentario = document.getElementById("ctnAvaliacaoLogado");
-    
+    if(ctnNotaComentario.hasChildNodes){
+        ctnNotaComentario.innerHTML = '';
+    }
     ctnAvaliacaoLogado.innerHTML = '';
     let estrelas = '';
     for (let i = 1; i <= nota; i++) {
@@ -594,12 +528,13 @@ function fixarComentarioEnviado(nota, comentario) {
             <h3>Meu comentário</h3>
             <textarea readonly class="p-1 bg-dark" autocomplete="off" id="inputComentario" cols="40" rows="3" maxlength="300">${comentario?comentario:'Sem comentário'}</textarea>
             <div class="d-flex justify-content-between align-items-center">
-            <button readonly is-editing="0" class="btn btn-warning mb-3 mt-3" id="btnEditarComentario" onclick="editarComentario()"><span>Editar comentário</span><span class="fa-thin fa-pencil fa" style="color: #2b2a4c;"></span>
-            <button is-editing="0" class="d-none btn btn-success" id="btnEnviaEdicaoComentario" onclick="alternarStatusEdicao(this)"><span>Enviar edição</span><button>
+            <button readonly is-editing="0" class="btn btn-warning mb-3 mt-3" id="btnEditarComentario" onclick="alternarStatusEdicao(this)"><span>Editar comentário</span><span class="fa-thin fa-pencil fa" style="color: #2b2a4c;"></span>
+            <button is-editing="0" class="d-none btn btn-success" id="btnEnviaEdicaoComentario" onclick="enviarComentarioEditado(); "><span>Enviar edição</span><button>
             </div>
         </div>
     </div>`);
     ctnNotaComentario.classList.add("zoomingAnimation");
+    textoAntesEdicao = document.getElementById("inputComentario").value;
 }
 
 //editar comentario
@@ -625,7 +560,13 @@ function editarComentario() {
     btnEditarComentario.setAttribute("is-editing","1");
     let btnEnviaEdicao = document.getElementById("btnEnviaEdicaoComentario");
     btnEnviaEdicao.classList.remove("d-none");
-    inputComentario.removeAttribute("readonly");
+
+    if(inputComentario){
+        inputComentario.removeAttribute("readonly");
+    }else{
+        inputComentario = document.getElementById("inputComentario");
+        inputComentario.removeAttribute("readonly");
+    }
     btnEditarComentario.firstChild.textContent = "Cancelar edição";
 }
 
@@ -644,7 +585,7 @@ function cancelarEdicaoComentario(textoAnterior = true) {
 
 function enviarComentarioEditado(){
     let ctn = document.getElementById("containerNotaComentario");
-    if(inputComentario.value.length > 10){
+    if(inputComentario.value.length > 1){
     let texto = inputComentario.value;
     let parametro = new URLSearchParams(document.location.search);
     fetch("/atualizar-comentario", {
@@ -663,7 +604,7 @@ function enviarComentarioEditado(){
             console.log(dados.mensagem);
         }).catch(error => { console.log(error) });
     }else{
-        criarTextoParaAviso("Digite no mínimo 10 caracteres",null, ctn,"textSlide",3000,"red");
+        criarTextoParaAviso("Digite no mínimo 1 caracter" ,null, ctn,"textSlide",3000,"red");
     }
 }
 
@@ -763,6 +704,7 @@ let autorCitacao = document.getElementById("autor_citacao");
 //dados atuais
 let nickAtual = '', imgPerfilAtual = '',citacaoAtual = '', autorCitacaoAtual = '';
 
+//checa se elemento está na lista de nós
 if (btnEditarPerfil) {
     btnEditarPerfil.addEventListener("click", () => {
         dadosDeFormulario.getAttribute("is-editing") == "0" ?
@@ -825,7 +767,6 @@ function editarPerfil() {
     citacaoInput.removeAttribute("disabled");
     imgPerfil.removeAttribute("disabled");
     autorCitacao.removeAttribute("disabled");
-    imgPreview.classList.add("wobble-hor-bottom");
     dadosDeFormulario.setAttribute("is-editing", "1");
 
     btnEditarPerfil.style.backgroundColor = "rgb(255, 100, 100)";
@@ -842,7 +783,6 @@ function cancelarEdicaoDePerfil(inserirPerfilAnterior = true) {
     citacaoInput.setAttribute("disabled", "");
     imgPerfil.setAttribute("disabled", "");
     autorCitacao.setAttribute("disabled", "");
-    imgPreview.classList.remove("wobble-hor-bottom");
     dadosDeFormulario.setAttribute("is-editing", "0");
 
     btnEditarPerfil.style.backgroundColor = "dodgerblue";
@@ -937,10 +877,6 @@ function enviarSenhaAlterada() {
             console.log(erro);
         });
 }
-
-
-
-
 
 //livros em pagina de perfil
 //solicitar lista de livros em lista de leitura
@@ -1136,7 +1072,7 @@ function removerFavorito(btn) {
     })
 }
 
-//solicitar livros lidos
+//botao para solicitar livros lidos
 let btnExibirLivrosLidos = document.getElementById("btnExibirLivrosLidos");
 
 if (btnExibirLivrosLidos) {
