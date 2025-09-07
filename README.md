@@ -30,4 +30,4 @@ alguns dos conceitos mais importantes abordados neste projeto:
 
 demonstração:
 
-![demo](https://i.ibb.co/1t7sv0FX/biblioteca-demo.gif)
+<img src="https://i.ibb.co/1t7sv0FX/biblioteca-demo.gif">
