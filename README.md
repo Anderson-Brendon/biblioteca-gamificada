@@ -30,4 +30,4 @@ alguns dos conceitos mais importantes abordados neste projeto:
 
 demonstração:
 
-<img src="https://i.ibb.co/1t7sv0FX/biblioteca-demo.gif">
+[![demo](https://drive.google.com/thumbnail?id=1Ry9QBVdHUoCjl6DNh70NGkYB8Dcr2L16&sz=s4000)](https://drive.google.com/file/d/1Ry9QBVdHUoCjl6DNh70NGkYB8Dcr2L16/view?usp=sharing)
