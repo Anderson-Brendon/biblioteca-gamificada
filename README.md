@@ -30,4 +30,4 @@ alguns dos conceitos mais importantes abordados neste projeto:
 
 demonstração:
 
-![demo](https://i.imgur.com/XPH0lpy.gif)
+![demo](https://i.imgur.com/XPH0lpy.mp4)
