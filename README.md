@@ -28,6 +28,6 @@ alguns dos conceitos mais importantes abordados neste projeto:
 
 -nunca mais usar php vanilla pra nenhum projeto :D
 
-screenshots:
+demonstração:
 
 ![demo](https://i.imgur.com/XPH0lpy.gif)
