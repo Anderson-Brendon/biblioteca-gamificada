@@ -61,5 +61,4 @@ Redirecionar::usuarioEmSessao('/galeria-de-livros'); ?>
     </div>
 </main>
 
-<?php $msg = 'Php enjoyer';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
